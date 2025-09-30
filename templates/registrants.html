@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrants</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Registrants</h2>
+      <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Register</a>
+    </div>
+
+    <table class="table table-bordered table-hover table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Year</th>
+          <th>Roll No</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+          <th>Sport</th>
+          <th>Register Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for registrant in registrants %}
+          <tr>
+            <td>{{ registrant['name'] }}</td>
+            <td>{{ registrant['year'] }}</td>
+            <td>{{ registrant['roll_no'] }}</td>
+            <td>{{ registrant['phone_number'] }}</td>
+            <td>{{ registrant['email'] }}</td>
+            <td>{{ registrant['sport_name'] }}</td>
+            <td>{{ registrant['register_time'] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
