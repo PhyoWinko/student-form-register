@@ -7,10 +7,22 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body class="bg-light">
+  <nav class="navbar bg-light">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <!-- Logo or title -->
+      <img src="https://www.hbtu.edu.mm/img/Hmawbi-logo.png" alt="tu-hmawbi-logo" width="40" height="45">
+
+      <!-- Button link -->
+      <a href="{{ url_for('registrants') }}" class="btn btn-success">View Registrants</a>
+    </div>
+  </nav>
+
   <div class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2>Student Registration</h2>
-      <a href="{{ url_for('registrants') }}" class="btn btn-primary">View Registrants</a>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="d-flex flex-column align-items-center">
+        <h2>SPORTS REGISTRATION FORM</h2>
+        <div class="text">Open now online</div>
+      </div>
     </div>
 
     {% with messages = get_flashed_messages() %}
@@ -23,34 +35,46 @@
       {% endif %}
     {% endwith %}
 
-    <form action="/register" method="post" class="row g-3">
-      <div class="col-md-6">
-        <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+    <div class="container py-5">
+      <div class="d-flex justify-content-center">
+        <form action="/register" method="post" class="w-100" style="max-width: 600px;">
+          <div class="mb-3">
+            <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex flex-row gap-1">
+              <input type="text" name="year" class="form-control" placeholder="Year" required>
+              <input type="number" name="roll_no" class="form-control" min="1" placeholder="Roll No" required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <input type="text" name="phone_number" class="form-control" placeholder="Phone Number" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+          </div>
+          <div class="mb-3">
+            <select name="sport" class="form-select" required>
+              <option disabled selected value="">Choose a Sport</option>
+              {% for sport in sports %}
+                <option value="{{ sport['sport_name'] }}">{{ sport['sport_name'] }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+          </div>
+        </form>
       </div>
-      <div class="col-md-3">
-        <input type="text" name="year" class="form-control" placeholder="Year" required>
-      </div>
-      <div class="col-md-3">
-        <input type="number" name="roll_no" class="form-control" min="1" placeholder="Roll No" required>
-      </div>
-      <div class="col-md-6">
-        <input type="text" name="phone_number" class="form-control" placeholder="Phone Number" required>
-      </div>
-      <div class="col-md-6">
-        <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-      </div>
-      <div class="col-md-6">
-        <select name="sport" class="form-select" required>
-          <option disabled selected value="">Choose a Sport</option>
-          {% for sport in sports %}
-            <option value="{{ sport['sport_name'] }}">{{ sport['sport_name'] }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-success w-100">Register</button>
-      </div>
-    </form>
+    </div>    
   </div>
+
+  <footer class="bg-light mx-auto">
+    <div class="container text-center">
+      <a href="https://github.com/PhyoWinko">
+        <img src="https://img.icons8.com/?size=100&id=fmFqQmR0UdsR&format=png&color=000000" height="30" alt="github_profile">
+      </a>
+    </div>
+  </footer>
 </body>
 </html>
